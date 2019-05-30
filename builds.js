@@ -45,12 +45,14 @@ $(document).ready(function() {
 				platforms: {
 					android: null,
 					win: null,
-					osx: null
+					osx: null,
+					linux: null
 				},
 				platforms_naomi: {
 					android: null,
 					win: null,
-					osx: null
+					osx: null,
+					linux: null
 				}
 			}
 		}
@@ -92,7 +94,8 @@ $(document).ready(function() {
 			el_table.append('<tr><th>Commit</th><th>Date</th>'
 				+ '<th colspan="2"><img src="android.jpg" /> Android</th>'
 				+ '<th colspan="2"><img src="windows.png" /> Windows x64</th>'
-				+ '<th colspan="2"><img src="apple.png" /> OSX</th></tr>');
+				+ '<th colspan="2"><img src="apple.png" /> OSX</th>'
+				+ '<th colspan="2"><img src="ubuntu.png" /> Ubuntu</th></tr>');
 
 			// Create a sorted list of commit ids
 			var commit_ids = keys(branch).sort(function(a, b)
@@ -121,16 +124,23 @@ $(document).ready(function() {
 				s_win64_naomi = (commit.platforms_naomi.win == null) ? '' : '<a data-action="download" data-build="' 
 					+ commit_id + '" href="http://flycast-builds.s3.amazonaws.com/' + commit.platforms_naomi.win.path 
 					+ '">Naomi</a> (' + format_size(commit.platforms_naomi.win.filesize) + ')';
-				s_osx = (commit.platforms.osx   == null) ? '' : '<a data-action="download" data-build="' 
+				s_osx = (commit.platforms.osx == null) ? '' : '<a data-action="download" data-build="' 
 					+ commit_id + '" href="http://flycast-builds.s3.amazonaws.com/' + commit.platforms.osx.path 
 					+ '">Dreamcast</a> (' + format_size(commit.platforms.osx.filesize) + ')';
-				s_osx_naomi = (commit.platforms_naomi.osx   == null) ? '' : '<a data-action="download" data-build="' 
+				s_osx_naomi = (commit.platforms_naomi.osx == null) ? '' : '<a data-action="download" data-build="' 
 					+ commit_id + '" href="http://flycast-builds.s3.amazonaws.com/' + commit.platforms_naomi.osx.path 
 					+ '">Naomi</a> (' + format_size(commit.platforms_naomi.osx.filesize) + ')';
+				s_linux = (commit.platforms.linux == null) ? '' : '<a data-action="download" data-build="' 
+					+ commit_id + '" href="http://flycast-builds.s3.amazonaws.com/' + commit.platforms.linux.path 
+					+ '">Dreamcast</a> (' + format_size(commit.platforms.linux.filesize) + ')';
+				s_linux_naomi = (commit.platforms_naomi.linux == null) ? '' : '<a data-action="download" data-build="' 
+					+ commit_id + '" href="http://flycast-builds.s3.amazonaws.com/' + commit.platforms_naomi.linux.path 
+					+ '">Dreamcast</a> (' + format_size(commit.platforms_naomi.linux.filesize) + ')';
 				el_table.append('<tr'+s_trclass+'><td class="commit">' + s_commit  + '</td><td class="date">' 
 					+ commit.last_modified.toISOString() + '</td><td>' + s_android + '</td><td>' 
 					+ s_android_naomi + '</td><td>' + s_win64 + '</td><td>' + s_win64_naomi + '</td><td>' 
-					+ s_osx + '</td><td>' + s_osx_naomi + '</td></tr>');
+					+ s_osx + '</td><td>' + s_osx_naomi + '</td><td>'
+					+ s_linux + '</td><td>' + s_linux_naomi + '</td></tr>');
 			}
 		}
 
