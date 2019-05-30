@@ -135,7 +135,7 @@ $(document).ready(function() {
 					+ '">Dreamcast</a> (' + format_size(commit.platforms.linux.filesize) + ')';
 				s_linux_naomi = (commit.platforms_naomi.linux == null) ? '' : '<a data-action="download" data-build="' 
 					+ commit_id + '" href="http://flycast-builds.s3.amazonaws.com/' + commit.platforms_naomi.linux.path 
-					+ '">Dreamcast</a> (' + format_size(commit.platforms_naomi.linux.filesize) + ')';
+					+ '">Naomi</a> (' + format_size(commit.platforms_naomi.linux.filesize) + ')';
 				el_table.append('<tr'+s_trclass+'><td class="commit">' + s_commit  + '</td><td class="date">' 
 					+ commit.last_modified.toISOString() + '</td><td>' + s_android + '</td><td>' 
 					+ s_android_naomi + '</td><td>' + s_win64 + '</td><td>' + s_win64_naomi + '</td><td>' 
