@@ -111,7 +111,7 @@ $(document).ready(function() {
 				var commit_id = commit_ids[j];
 				var commit = branch[commit_id];
 				var s_date = commit.last_modified.toISOString();
-				var s_commit = '<a href="https://github.com/flyinghead/reicast-emulator/commit/' + commit_id + '" data-action="info" data-build="' + commit_id + '">'+ commit_id +'</a>';
+				var s_commit = '<a href="https://github.com/flyinghead/flycast/commit/' + commit_id + '" data-action="info" data-build="' + commit_id + '">'+ commit_id +'</a>';
 				s_android = (commit.platforms.android == null) ? '' : '<a data-action="download" data-build="' 
 					+ commit_id + '" href="http://flycast-builds.s3.amazonaws.com/' + commit.platforms.android.path 
 					+ '">Dreamcast</a> (' + format_size(commit.platforms.android.filesize) + ')';
