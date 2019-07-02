@@ -1,0 +1,38 @@
+body {
+	font:15px Helvetica,  Arial,  sans-serif;
+}
+
+html, body, div {
+	margin:0;
+	padding:0;
+	border:0;
+}
+
+#content {
+	padding:15px 0;
+	clear:both;
+}
+
+#builds table {
+	width:100%;
+	font-size: large;
+}
+
+#builds td {
+	vertical-align: middle;
+	padding:10px;
+}
+
+#builds td.screenshot {
+	text-align: center;
+	padding:10px;
+}
+
+.rowOK {
+	background: #00E000;
+}
+
+.rowFAIL {
+	background: #F00000;
+}
+

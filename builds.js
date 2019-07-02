@@ -23,6 +23,19 @@ function format_size(bytes) {
 	return Math.max(bytes, 0.1).toFixed(1) + ' ' + units[i];
 };
 
+function urlExists(url, callback){
+  $.ajax({
+    type: 'HEAD',
+    url: url,
+    success: function(){
+      callback(true);
+    },
+    error: function() {
+      callback(false);
+    }
+  });
+}
+
 $(document).ready(function() {
 	$('#builds').removeClass("hide-element");
 
@@ -95,7 +108,8 @@ $(document).ready(function() {
 				+ '<th colspan="2"><img src="android.jpg" /> Android</th>'
 				+ '<th colspan="2"><img src="windows.png" /> Windows x64</th>'
 				+ '<th colspan="2"><img src="apple.png" /> OSX</th>'
-				+ '<th colspan="2"><img src="ubuntu.png" /> Ubuntu</th></tr>');
+				+ '<th colspan="2"><img src="ubuntu.png" /> Ubuntu</th>'
+				+ '<th>Test Results</th></tr>');
 
 			// Create a sorted list of commit ids
 			var commit_ids = keys(branch).sort(function(a, b)
@@ -108,7 +122,7 @@ $(document).ready(function() {
 			for(var j = 0; j < commit_ids.length; j++)
 			{
 				var s_trclass = ((j % 2) == 0) ? ' class="even"' : '';
-				var commit_id = commit_ids[j];
+				let commit_id = commit_ids[j];
 				var commit = branch[commit_id];
 				var s_date = commit.last_modified.toISOString();
 				var s_commit = '<a href="https://github.com/flyinghead/flycast/commit/' + commit_id + '" data-action="info" data-build="' + commit_id + '">'+ commit_id +'</a>';
@@ -136,11 +150,19 @@ $(document).ready(function() {
 				s_linux_naomi = (commit.platforms_naomi.linux == null) ? '' : '<a data-action="download" data-build="' 
 					+ commit_id + '" href="http://flycast-builds.s3.amazonaws.com/' + commit.platforms_naomi.linux.path 
 					+ '">Naomi</a> (' + format_size(commit.platforms_naomi.linux.filesize) + ')';
+				var test_column;
+				test_column = '<td><a style="display:none" id="test' + commit_id 
+					+ '" href="test-results.html?hash=' + commit_id + '">Tests</a></td>';
 				el_table.append('<tr'+s_trclass+'><td class="commit">' + s_commit  + '</td><td class="date">' 
 					+ commit.last_modified.toISOString() + '</td><td>' + s_android + '</td><td>' 
 					+ s_android_naomi + '</td><td>' + s_win64 + '</td><td>' + s_win64_naomi + '</td><td>' 
 					+ s_osx + '</td><td>' + s_osx_naomi + '</td><td>'
-					+ s_linux + '</td><td>' + s_linux_naomi + '</td></tr>');
+					+ s_linux + '</td><td>' + s_linux_naomi + '</td>'
+					+ test_column + '</tr>');
+				urlExists("https://flycast-tests.s3.us-east-2.amazonaws.com/" + commit_id + "/result-us.json", function(exists) {
+					if (exists)
+						$("#test" + commit_id).show();
+				});
 			}
 		}
 
@@ -153,9 +175,7 @@ $(document).ready(function() {
 		$.get("https://flycast-builds.s3.amazonaws.com/")
 	).then(function(xml_builds)
 	{
-//console.log(xml_builds);
 		// Parse the builds
-//		contents = xml_builds[2].responseXML.getElementsByTagName('Contents');
 		contents = xml_builds.documentElement.getElementsByTagName('Contents');
 		for(i = 0; i < contents.length; i++)
 		{
@@ -165,7 +185,6 @@ $(document).ready(function() {
 			var regexp = new RegExp("^" + system + "\/heads\/", "g");
 			var branch = path.indexOf(system + "/heads") == 0 && path.replace(regexp,"").replace(/\/[^\/]*$/,"").replace(/\-[^\-]*$/,"") || unknown_branch;
 			var name = path.substring(path.lastIndexOf("/") + 1);
-//			var commit = name.substring(name.lastIndexOf("-")+1, name.lastIndexOf(".")).substring(0, 7);
 			var dirname = path.substring(0, path.lastIndexOf("/"));
 			var commit = dirname.substring(dirname.lastIndexOf("-") + 1).substring(0, 7);
 			var filesize = contents[i].getElementsByTagName('Size')[0].firstChild.data;
