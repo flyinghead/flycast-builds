@@ -118,16 +118,16 @@ $(document).ready(function() {
 				var s_date = commit.last_modified.toISOString();
 				var s_commit = '<a href="https://github.com/flyinghead/flycast/commit/' + commit_id + '" data-action="info" data-build="' + commit_id + '">'+ commit_id +'</a>';
 				s_android = (commit.platforms.android == null) ? '' : '<a data-action="download" data-build="' 
-					+ commit_id + '" href="http://flycast-builds.s3.amazonaws.com/' + commit.platforms.android.path 
+					+ commit_id + '" href="https://flycast-builds.s3.amazonaws.com/' + commit.platforms.android.path 
 					+ '">Download</a> (' + format_size(commit.platforms.android.filesize) + ')';
 				s_win64 = (commit.platforms.win == null) ? '' : '<a data-action="download" data-build="' 
-					+ commit_id + '" href="http://flycast-builds.s3.amazonaws.com/' + commit.platforms.win.path 
+					+ commit_id + '" href="https://flycast-builds.s3.amazonaws.com/' + commit.platforms.win.path 
 					+ '">Download</a> (' + format_size(commit.platforms.win.filesize) + ')';
 				s_osx = (commit.platforms.osx == null) ? '' : '<a data-action="download" data-build="' 
-					+ commit_id + '" href="http://flycast-builds.s3.amazonaws.com/' + commit.platforms.osx.path 
+					+ commit_id + '" href="https://flycast-builds.s3.amazonaws.com/' + commit.platforms.osx.path 
 					+ '">Download</a> (' + format_size(commit.platforms.osx.filesize) + ')';
 				s_linux = (commit.platforms.linux == null) ? '' : '<a data-action="download" data-build="' 
-					+ commit_id + '" href="http://flycast-builds.s3.amazonaws.com/' + commit.platforms.linux.path 
+					+ commit_id + '" href="https://flycast-builds.s3.amazonaws.com/' + commit.platforms.linux.path 
 					+ '">Download</a> (' + format_size(commit.platforms.linux.filesize) + ')';
 				var test_column;
 				test_column = '<td><a style="display:none" id="test' + commit_id 
