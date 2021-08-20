@@ -44,7 +44,7 @@ $(document).ready(function() {
 	var builds = new Array();
 	var branches = [];
 
-	function add_build(branch, commit, platform, last_modified, naomi, build)
+	function add_build(branch, commit, platform, last_modified, build)
 	{
 		if(!builds.hasOwnProperty(branch))
 		{
@@ -59,7 +59,8 @@ $(document).ready(function() {
 					android: null,
 					win: null,
 					osx: null,
-					linux: null
+					ios: null,
+					nswitch: null
 				},
 			}
 		}
@@ -98,8 +99,9 @@ $(document).ready(function() {
 			el_table.append('<tr><th>Commit</th><th>Date</th>'
 				+ '<th><img src="android.jpg" /> Android</th>'
 				+ '<th><img src="windows.png" /> Windows x64</th>'
-				+ '<th><img src="apple.png" /> OSX</th>'
-				+ '<th><img src="ubuntu.png" /> Ubuntu</th>'
+				+ '<th><img src="apple.png" /> macOS</th>'
+				+ '<th><img src="apple.png" /> iOS</th>'
+				+ '<th><img src="switch.png" /> Switch</th>'
 				+ '<th>Test Results</th></tr>');
 
 			// Create a sorted list of commit ids
@@ -126,9 +128,12 @@ $(document).ready(function() {
 				s_osx = (commit.platforms.osx == null) ? '' : '<a data-action="download" data-build="' 
 					+ commit_id + '" href="https://flycast-builds.s3.amazonaws.com/' + commit.platforms.osx.path 
 					+ '">Download</a> (' + format_size(commit.platforms.osx.filesize) + ')';
-				s_linux = (commit.platforms.linux == null) ? '' : '<a data-action="download" data-build="' 
-					+ commit_id + '" href="https://flycast-builds.s3.amazonaws.com/' + commit.platforms.linux.path 
-					+ '">Download</a> (' + format_size(commit.platforms.linux.filesize) + ')';
+				s_ios = (commit.platforms.ios == null) ? '' : '<a data-action="download" data-build="' 
+					+ commit_id + '" href="https://flycast-builds.s3.amazonaws.com/' + commit.platforms.ios.path 
+					+ '">Download</a> (' + format_size(commit.platforms.ios.filesize) + ')';
+				s_switch = (commit.platforms.nswitch == null) ? '' : '<a data-action="download" data-build="' 
+					+ commit_id + '" href="https://flycast-builds.s3.amazonaws.com/' + commit.platforms.nswitch.path 
+					+ '">Download</a> (' + format_size(commit.platforms.nswitch.filesize) + ')';
 				var test_column;
 				test_column = '<td><a style="display:none" id="test' + commit_id 
 					+ '" href="test-results.html?hash=' + commit_id + '">Tests</a></td>';
@@ -136,7 +141,8 @@ $(document).ready(function() {
 					+ commit.last_modified.toISOString() + '</td><td>' + s_android 
 					+ '</td><td>' + s_win64 + '</td><td>' 
 					+ s_osx + '</td><td>'
-					+ s_linux + '</td>'
+					+ s_ios + '</td><td>'
+					+ s_switch + '</td>'
 					+ test_column + '</tr>');
 				urlExists("https://flycast-tests.s3.us-east-2.amazonaws.com/" + commit_id + "/result-us.json", function(exists) {
 					if (exists)
@@ -168,7 +174,7 @@ $(document).ready(function() {
 			var commit = dirname.substring(dirname.lastIndexOf("-") + 1).substring(0, 7);
 			var filesize = contents[i].getElementsByTagName('Size')[0].firstChild.data;
 			var last_modified = new Date(contents[i].getElementsByTagName('LastModified')[0].firstChild.data);
-			add_build(branch, commit, system, last_modified, false, {
+			add_build(branch, commit, system, last_modified, {
 				name: name,
 				path: path,
 				filesize: filesize,

@@ -53,7 +53,7 @@ html, body, div {
 	line-height: 48px;
 	font-size: x-large;
 	font-weight: normal;
-	text-transform: lowercase;
+/*	text-transform: lowercase; */
 }
 
 #content {
