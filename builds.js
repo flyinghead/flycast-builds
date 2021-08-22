@@ -60,7 +60,7 @@ $(document).ready(function() {
 					win: null,
 					osx: null,
 					ios: null,
-					nswitch: null
+					switch: null
 				},
 			}
 		}
@@ -131,9 +131,9 @@ $(document).ready(function() {
 				s_ios = (commit.platforms.ios == null) ? '' : '<a data-action="download" data-build="' 
 					+ commit_id + '" href="https://flycast-builds.s3.amazonaws.com/' + commit.platforms.ios.path 
 					+ '">Download</a> (' + format_size(commit.platforms.ios.filesize) + ')';
-				s_switch = (commit.platforms.nswitch == null) ? '' : '<a data-action="download" data-build="' 
-					+ commit_id + '" href="https://flycast-builds.s3.amazonaws.com/' + commit.platforms.nswitch.path 
-					+ '">Download</a> (' + format_size(commit.platforms.nswitch.filesize) + ')';
+				s_switch = (commit.platforms.switch == null) ? '' : '<a data-action="download" data-build="' 
+					+ commit_id + '" href="https://flycast-builds.s3.amazonaws.com/' + commit.platforms.switch.path 
+					+ '">Download</a> (' + format_size(commit.platforms.switch.filesize) + ')';
 				var test_column;
 				test_column = '<td><a style="display:none" id="test' + commit_id 
 					+ '" href="test-results.html?hash=' + commit_id + '">Tests</a></td>';
