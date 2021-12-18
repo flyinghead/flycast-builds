@@ -60,7 +60,8 @@ $(document).ready(function() {
 					win: null,
 					osx: null,
 					ios: null,
-					switch: null
+					switch: null,
+					xbox: null
 				},
 			}
 		}
@@ -102,6 +103,7 @@ $(document).ready(function() {
 				+ '<th><img src="apple.png" /> macOS</th>'
 				+ '<th><img src="apple.png" /> iOS</th>'
 				+ '<th><img src="switch.png" /> Switch</th>'
+				+ '<th><img src="xbox.png" /> Xbox One</th>'
 				+ '<th>Test Results</th></tr>');
 
 			// Create a sorted list of commit ids
@@ -134,6 +136,9 @@ $(document).ready(function() {
 				s_switch = (commit.platforms.switch == null) ? '' : '<a data-action="download" data-build="' 
 					+ commit_id + '" href="https://flycast-builds.s3.amazonaws.com/' + commit.platforms.switch.path 
 					+ '">Download</a> (' + format_size(commit.platforms.switch.filesize) + ')';
+				s_xbox = (commit.platforms.xbox == null) ? '' : '<a data-action="download" data-build="' 
+					+ commit_id + '" href="https://flycast-builds.s3.amazonaws.com/' + commit.platforms.xbox.path 
+					+ '">Download</a> (' + format_size(commit.platforms.xbox.filesize) + ')';
 				var test_column;
 				test_column = '<td><a style="display:none" id="test' + commit_id 
 					+ '" href="test-results.html?hash=' + commit_id + '">Tests</a></td>';
@@ -142,7 +147,8 @@ $(document).ready(function() {
 					+ '</td><td>' + s_win64 + '</td><td>' 
 					+ s_osx + '</td><td>'
 					+ s_ios + '</td><td>'
-					+ s_switch + '</td>'
+					+ s_switch + '</td><td>'
+					+ s_xbox + '</td>'
 					+ test_column + '</tr>');
 				urlExists("https://flycast-tests.s3.us-east-2.amazonaws.com/" + commit_id + "/result-us.json", function(exists) {
 					if (exists)
