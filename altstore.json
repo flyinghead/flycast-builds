@@ -7,7 +7,7 @@
       "bundleIdentifier": "com.flyinghead.Flycast",
       "developerName": "Flyinghead",
       "subtitle": "Dreamcast, Naomi and Atomiswave emulator.",
-      "version": "1.2",
+      "version": "v1.2",
       "versionDate": "2021-12-17T15:47:00+01:00",
       "versionDescription": "iOS, Nintendo Switch, Libretro core. ",
       "downloadURL": "https://github.com/flyinghead/flycast/releases/download/v1.2/Flycast-1.2.ipa",
