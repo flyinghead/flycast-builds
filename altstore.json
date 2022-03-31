@@ -13,7 +13,7 @@
       "downloadURL": "https://github.com/flyinghead/flycast/releases/download/v1.2/Flycast-1.2.ipa",
       "localizedDescription": "Dreamcast, Naomi and Atomiswave emulator.",
       "iconURL": "https://github.com/flyinghead/flycast/raw/master/shell/linux/flycast.png",
-      "tintColor": "0000FF",
+      "tintColor": "9b54fd",
       "size": 0,
       "screenshotURLs": [
         "https://github.com/flyinghead/flycast/raw/master/shell/imgs/screenshot1.png",
