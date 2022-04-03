@@ -47,15 +47,21 @@ $.getJSON( base_url + "result-us.json")
               .done(function( data ) {
                 parse_results(data, "Naomi");
 
-                $.getJSON( base_url + "result-awave.json")
-                  .done(function( data ) {
-                    parse_results(data, "Atomiswave");
-                    $("#summary").append("git hash " + githash + ": " + total_tests + " tests, " + success_tests
-                      + " successes, " + failed_tests + " failures.");
-                  })
-                  .fail(failed_results);
-              })
-              .fail(failed_results);
+	            $.getJSON( base_url + "result-naomi2.json")
+	              .done(function( data ) {
+	                parse_results(data, "Naomi 2");
+	
+	                $.getJSON( base_url + "result-awave.json")
+	                  .done(function( data ) {
+	                    parse_results(data, "Atomiswave");
+	                    $("#summary").append("git hash " + githash + ": " + total_tests + " tests, " + success_tests
+	                      + " successes, " + failed_tests + " failures.");
+	                  })
+	                  .fail(failed_results);
+	              })
+	              .fail(failed_results);
+	          })
+	          .fail(failed_results);
           })
           .fail(failed_results);
       })
