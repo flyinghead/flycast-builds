@@ -61,7 +61,8 @@ $(document).ready(function() {
 					osx: null,
 					ios: null,
 					switch: null,
-					xbox: null
+					xbox: null,
+					linux: null
 				},
 			}
 		}
@@ -100,6 +101,7 @@ $(document).ready(function() {
 			el_table.append('<tr><th>Commit</th><th>Date</th>'
 				+ '<th><img src="android.jpg" /> Android</th>'
 				+ '<th><img src="windows.png" /> Windows x64</th>'
+				+ '<th><img src="ubuntu.png" /> Linux x64</th>'
 				+ '<th><img src="apple.png" /> macOS</th>'
 				+ '<th><img src="apple.png" /> iOS</th>'
 				+ '<th><img src="switch.png" /> Switch</th>'
@@ -127,6 +129,9 @@ $(document).ready(function() {
 				s_win64 = (commit.platforms.win == null) ? '' : '<a data-action="download" data-build="' 
 					+ commit_id + '" href="https://flycast-builds.s3.amazonaws.com/' + commit.platforms.win.path 
 					+ '">Download</a> (' + format_size(commit.platforms.win.filesize) + ')';
+				s_linux = (commit.platforms.linux == null) ? '' : '<a data-action="download" data-build="' 
+					+ commit_id + '" href="https://flycast-builds.s3.amazonaws.com/' + commit.platforms.linux.path 
+					+ '">Download</a> (' + format_size(commit.platforms.linux.filesize) + ')';
 				s_osx = (commit.platforms.osx == null) ? '' : '<a data-action="download" data-build="' 
 					+ commit_id + '" href="https://flycast-builds.s3.amazonaws.com/' + commit.platforms.osx.path 
 					+ '">Download</a> (' + format_size(commit.platforms.osx.filesize) + ')';
@@ -145,6 +150,7 @@ $(document).ready(function() {
 				el_table.append('<tr'+s_trclass+'><td class="commit">' + s_commit  + '</td><td class="date">' 
 					+ commit.last_modified.toISOString() + '</td><td>' + s_android 
 					+ '</td><td>' + s_win64 + '</td><td>' 
+					+ s_linux + '</td><td>'
 					+ s_osx + '</td><td>'
 					+ s_ios + '</td><td>'
 					+ s_switch + '</td><td>'
