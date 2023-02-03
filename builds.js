@@ -101,7 +101,7 @@ $(document).ready(function() {
 			el_table.append('<tr><th>Commit</th><th>Date</th>'
 				+ '<th><img src="android.jpg" /> Android</th>'
 				+ '<th><img src="windows.png" /> Windows x64</th>'
-				+ '<th><img src="ubuntu.png" /> Linux x64</th>'
+				+ '<th><img src="ubuntu.png" /> Linux AppImage</th>'
 				+ '<th><img src="apple.png" /> macOS</th>'
 				+ '<th><img src="apple.png" /> iOS</th>'
 				+ '<th><img src="switch.png" /> Switch</th>'
