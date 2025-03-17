@@ -1,7 +1,7 @@
 var url = new URL(window.location.href);
 var githash = url.searchParams.get("hash");
 
-var base_url = "https://flycast-tests.s3.us-east-2.amazonaws.com/" + githash + "/";
+var base_url = "https://flycast-tests.s3.fr-par.scw.cloud/" + githash + "/";
 
 var total_tests = 0;
 var success_tests = 0;
